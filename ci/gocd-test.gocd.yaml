@@ -41,13 +41,13 @@ pipelines:
             isort-sorting:
               timeout: 0
               tasks:
-              - exec:
-                  arguments:
-                  - ./src
-                  - -v
-                  - --check-only
-                  command: isort
-                  run_if: passed
+                - exec:
+                    arguments:
+                      - ./src
+                      - -v
+                      - --check-only
+                    command: isort
+                    run_if: passed
       - linting:
           fetch_materials: true
           keep_artifacts: false
@@ -59,8 +59,8 @@ pipelines:
             flake8-linting:
               timeout: 0
               tasks:
-              - exec:
-                  arguments:
-                  - ./src
-                  command: flake8
-                  run_if: passed
+                - exec:
+                    arguments:
+                      - ./src
+                    command: flake8
+                    run_if: passed
