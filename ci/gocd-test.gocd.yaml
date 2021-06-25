@@ -24,10 +24,10 @@ pipelines:
             black-formatting:
               timeout: 0
               tasks:
-              - exec:
+                - exec:
                   arguments:
-                  - --check
-                  - ./src
+                    - --check
+                    - ./src
                   command: black
                   run_if: passed
       - args-sorting:
