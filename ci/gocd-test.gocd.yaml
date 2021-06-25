@@ -11,7 +11,7 @@ pipelines:
         git: https://github.com/Devin-Taylor/gocd-test.git
         shallow_clone: false
         auto_update: true
-        branch: main
+        branch: develop
     stages:
       - formatting:
           fetch_materials: true
