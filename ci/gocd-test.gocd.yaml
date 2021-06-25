@@ -27,8 +27,8 @@ pipelines:
                 - exec:
                   command: black
                   arguments:
-                    - --check
-                    - ./src
+                  - --check
+                  - ./src
       - args-sorting:
           fetch_materials: true
           keep_artifacts: false
