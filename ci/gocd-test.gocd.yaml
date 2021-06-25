@@ -1,3 +1,4 @@
+---
 format_version: 10
 pipelines:
   gocd-test:
@@ -13,22 +14,22 @@ pipelines:
         branch: main
     stages:
       - formatting:
-          fetch_materials: true
-          keep_artifacts: false
-          clean_workspace: false
-          approval:
-            type: success
-            allow_only_on_success: false
-          jobs:
-            black-formatting:
-              timeout: 0
-              tasks:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          black-formatting:
+            timeout: 0
+            tasks:
               - exec:
-                  arguments:
+                arguments:
                   - --check
                   - ./src
-                  command: black
-                  run_if: passed
+                command: black
+                run_if: passed
       - args-sorting:
         fetch_materials: true
         keep_artifacts: false
@@ -39,11 +40,11 @@ pipelines:
           isort-sorting:
             timeout: 0
             tasks:
-            - exec:
-              arguments:
-                - ./src
-                - -v
-                - --check-only
+              - exec:
+                arguments:
+                  - ./src
+                  - -v
+                  - --check-only
                 command: isort
                 run_if: passed
       - linting:
@@ -56,8 +57,8 @@ pipelines:
           flake8-linting:
             timeout: 0
             tasks:
-            - exec:
-              arguments:
-                - ./src
+              - exec:
+                arguments:
+                  - ./src
                 command: flake8
                 run_if: passed
