@@ -12,7 +12,7 @@ pipelines:
         auto_update: true
         branch: main
     stages:
-    - formatting:
+    - linting:
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
@@ -28,38 +28,4 @@ pipelines:
                 - --check
                 - ./src
                 command: black
-                run_if: passed
-    - args-sorting:
-        fetch_materials: true
-        keep_artifacts: false
-        clean_workspace: false
-        approval:
-          type: success
-          allow_only_on_success: false
-        jobs:
-          isort-sorting:
-            timeout: 0
-            tasks:
-            - exec:
-                arguments:
-                - ./src
-                - -v
-                - --check-only
-                command: isort
-                run_if: passed
-    - linting:
-        fetch_materials: true
-        keep_artifacts: false
-        clean_workspace: false
-        approval:
-          type: success
-          allow_only_on_success: false
-        jobs:
-          flake8-linting:
-            timeout: 0
-            tasks:
-            - exec:
-                arguments:
-                - ./src
-                command: flake8
                 run_if: passed
