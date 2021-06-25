@@ -29,7 +29,6 @@ pipelines:
                   arguments:
                     - --check
                     - ./src
-                  run_if: passed
       - args-sorting:
           fetch_materials: true
           keep_artifacts: false
