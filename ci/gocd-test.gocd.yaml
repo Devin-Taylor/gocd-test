@@ -26,8 +26,8 @@ pipelines:
               tasks:
                 - exec:
                     arguments:
-                    - --check
-                    - ./src
+                      - --check
+                      - ./src
                     command: black
                     run_if: passed
       - args-sorting:
