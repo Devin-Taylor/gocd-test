@@ -24,9 +24,9 @@ pipelines:
             black-formatting:
               timeout: 0
               tasks:
-                - exec:
-                  command: black
-                  arguments:
+              - exec:
+                command: black
+                arguments:
                   - --check
                   - ./src
       - args-sorting:
