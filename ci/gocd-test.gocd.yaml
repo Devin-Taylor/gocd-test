@@ -24,12 +24,12 @@ pipelines:
             black-formatting:
               timeout: 0
               tasks:
-              - exec:
-                  arguments:
-                  - --check
-                  - ./src
-                  command: black
-                  run_if: passed
+                - exec:
+                    arguments:
+                    - --check
+                    - ./src
+                    command: black
+                    run_if: passed
       - args-sorting:
           fetch_materials: true
           keep_artifacts: false
