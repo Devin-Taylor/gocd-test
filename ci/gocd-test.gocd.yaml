@@ -25,7 +25,9 @@ pipelines:
               timeout: 0
               tasks:
                 - exec:
-                    command: echo $(ls) && docker build -t "test-build-$(git rev-parse HEAD)" .
+                    arguments:
+                      - docker build -t "test-build-$(git rev-parse HEAD)" .
+                    command: /bin/zsh
                     run_if: passed
       - formatting:
           fetch_materials: true
