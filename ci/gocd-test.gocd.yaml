@@ -13,6 +13,19 @@ pipelines:
         auto_update: true
         branch: main
     stages:
+      - build-container:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          build:
+            timeout: 0
+            tasks:
+              - exec:
+                command: docker build -t "test-build-$(git --git-dir=./gocd-test/.git rev-parse HEAD)" gocd-test/
       - formatting:
           fetch_materials: true
           keep_artifacts: false
@@ -25,10 +38,7 @@ pipelines:
               timeout: 0
               tasks:
                 - exec:
-                    arguments:
-                      - --check
-                      - ./src
-                    command: black
+                    command: docker run "test-build-$(git --git-dir=./gocd-test/.git rev-parse HEAD)" black --check ./src
                     run_if: passed
       - args-sorting:
           fetch_materials: true
