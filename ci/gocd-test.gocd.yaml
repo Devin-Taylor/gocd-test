@@ -25,7 +25,21 @@ pipelines:
               timeout: 0
               tasks:
                 - exec:
-                    command: docker build -t "test-build-$(git --git-dir=./gocd-test/.git rev-parse HEAD)" gocd-test/
+                    command: docker build -t "test-build-$(git rev-parse HEAD)" .
+                    run_if: passed
+      - formatting:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: success
+            allow_only_on_success: false
+          jobs:
+            black-formatting:
+              timeout: 0
+              tasks:
+                - exec:
+                    command: docker run "test-build-$(git rev-parse HEAD)" black --check ./src
                     run_if: passed
       - args-sorting:
           fetch_materials: true
