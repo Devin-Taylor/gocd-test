@@ -42,7 +42,10 @@ pipelines:
               timeout: 0
               tasks:
                 - exec:
-                    command: docker run "test-build-$(git rev-parse HEAD)" black --check ./src
+                    arguments:
+                      - -c 
+                      - docker run test-build-$(git rev-parse HEAD) black --check ./src
+                    command: /bin/zsh
                     run_if: passed
       - args-sorting:
           fetch_materials: true
@@ -57,10 +60,9 @@ pipelines:
               tasks:
                 - exec:
                     arguments:
-                      - ./src
-                      - -v
-                      - --check-only
-                    command: isort
+                      - -c 
+                      - docker run test-build-$(git rev-parse HEAD) isort --check-only ./src
+                    command: /bin/zsh
                     run_if: passed
       - linting:
           fetch_materials: true
@@ -75,7 +77,8 @@ pipelines:
               tasks:
                 - exec:
                     arguments:
-                      - ./src
-                    command: flake8
+                      - -c 
+                      - docker run test-build-$(git rev-parse HEAD) flake8 ./src
+                    command: /bin/zsh
                     run_if: passed
 
