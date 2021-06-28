@@ -39,7 +39,7 @@ pipelines:
               timeout: 0
               tasks:
                 - exec:
-                    command: docker run "test-build-$(git rev-parse HEAD)" black --check ./src
+                    command: echo $(ls) && docker run "test-build-$(git rev-parse HEAD)" black --check ./src
                     run_if: passed
       - args-sorting:
           fetch_materials: true
