@@ -12,6 +12,12 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: main
+      test-git-pr:
+        plugin_configuration:
+          id: github.pr
+          version: 1
+        options:
+          url: https://github.com/Devin-Taylor/gocd-test.git
     stages:
       - build-container:
           fetch_materials: true
