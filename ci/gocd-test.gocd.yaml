@@ -19,7 +19,7 @@ pipelines:
         options:
           url: https://github.com/Devin-Taylor/gocd-test.git
           defaultBranch: main
-          shallow_clone: true
+          shallow_clone: false
           auto_update: true
     stages:
       - build-container:
