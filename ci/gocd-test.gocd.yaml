@@ -7,11 +7,11 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
-      git-bb61f68:
-        git: https://github.com/Devin-Taylor/gocd-test.git
-        shallow_clone: false
-        auto_update: true
-        branch: main
+      # git-bb61f68:
+      #   git: https://github.com/Devin-Taylor/gocd-test.git
+      #   shallow_clone: false
+      #   auto_update: true
+      #   branch: main
       test-git-pr:
         plugin_configuration:
           id: github.pr
