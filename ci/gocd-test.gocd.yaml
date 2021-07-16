@@ -36,7 +36,7 @@ pipelines:
                 - exec:
                     arguments:
                       - -c
-                      - [[ $(cut -d ":" -f2 <<< $GO_SCM_TEST_GIT_PR_TARGET_BRANCH) == "main" ]]
+                      - '[[ $(cut -d ":" -f2 <<< $GO_SCM_TEST_GIT_PR_TARGET_BRANCH) = "main" ]]'
                     command: /bin/zsh
                     run_if: passed
                 - exec:
