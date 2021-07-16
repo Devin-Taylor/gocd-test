@@ -34,7 +34,9 @@ pipelines:
               timeout: 0
               tasks:
                 - exec:
-                    command: echo $(echo $TEST)
+                    arguments:
+                      - c
+                    command: echo $GO_SCM_TEST_GIT_PR_PR_ID
                     run_if: passed
                 - exec:
                     arguments:
