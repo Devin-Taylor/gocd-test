@@ -35,7 +35,7 @@ pipelines:
               tasks:
                 - exec:
                     arguments:
-                      - $GO_SCM_TEST_GIT_PR_PR_ID
+                      - ${GO_SCM_TEST_GIT_PR_PR_ID}
                     command: echo
                     run_if: passed
                 - exec:
