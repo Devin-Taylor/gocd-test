@@ -35,8 +35,8 @@ pipelines:
               tasks:
                 - exec:
                     arguments:
-                      - '#{GO_SCM_TEST_GIT_PR_PR_ID}'
-                    command: echo
+                      - "echo $GO_SCM_TEST_GIT_PR_PR_ID"
+                    command: /bin/zsh
                     run_if: passed
                 - exec:
                     arguments:
