@@ -36,60 +36,33 @@ pipelines:
                 - exec:
                     arguments:
                       - -c
-                      - '[[ $(cut -d ":" -f2 <<< $GO_SCM_TEST_GIT_PR_TARGET_BRANCH) = "main" ]]'
+                      - '[[ $(cut -d ":" -f2 <<< $GO_SCM_TEST_GIT_PR_TARGET_BRANCH) = "mainx" ]]'
                     command: /bin/zsh
                     run_if: passed
+                - exec:
+                    arguments:
+                      - -c
+                      - echo 0
+                    command: /bin/zsh
+                    run_if: failed
                 - exec:
                     arguments:
                       - -c
                       - docker build -t test-build-$(git rev-parse HEAD) .
                     command: /bin/zsh
                     run_if: passed
-      - formatting:
-          fetch_materials: true
-          keep_artifacts: false
-          clean_workspace: false
-          approval:
-            type: success
-            allow_only_on_success: false
-          jobs:
-            black-formatting:
-              timeout: 0
-              tasks:
                 - exec:
                     arguments:
                       - -c 
                       - docker run test-build-$(git rev-parse HEAD) black --check ./src
                     command: /bin/zsh
                     run_if: passed
-      - args-sorting:
-          fetch_materials: true
-          keep_artifacts: false
-          clean_workspace: false
-          approval:
-            type: success
-            allow_only_on_success: false
-          jobs:
-            isort-sorting:
-              timeout: 0
-              tasks:
                 - exec:
                     arguments:
                       - -c 
                       - docker run test-build-$(git rev-parse HEAD) isort --check-only ./src
                     command: /bin/zsh
                     run_if: passed
-      - linting:
-          fetch_materials: true
-          keep_artifacts: false
-          clean_workspace: false
-          approval:
-            type: success
-            allow_only_on_success: false
-          jobs:
-            flake8-linting:
-              timeout: 0
-              tasks:
                 - exec:
                     arguments:
                       - -c 
